@@ -1,0 +1,16 @@
+{
+    "name": "MainGame.StateMachineBehaviours",
+    "rootNamespace": "",
+    "references": [
+        "GUID:543a1e2875eb182489e6d9dbb6a97a16"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
