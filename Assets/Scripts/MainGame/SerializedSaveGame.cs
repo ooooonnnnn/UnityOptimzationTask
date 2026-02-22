@@ -14,7 +14,5 @@ public class SerializedSaveGame
     public int currentWaypointIndex;
 
     public float playerPositionX, playerPositionY, playerPositionZ;
-    public float playerRotationX, playerRotationY, playerRotationZ;
-    
-    
+    public float playerRotationZ;
 }

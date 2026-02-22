@@ -23,8 +23,6 @@ public class SaveGameManager : MonoBehaviour
         serializedSaveGame.playerPositionY = gameManager.playerCharacterController.transform.position.y;
         serializedSaveGame.playerPositionZ = gameManager.playerCharacterController.transform.position.z;
         
-        serializedSaveGame.playerRotationX = gameManager.playerCharacterController.transform.eulerAngles.x;
-        serializedSaveGame.playerRotationY = gameManager.playerCharacterController.transform.eulerAngles.y;
         serializedSaveGame.playerRotationZ = gameManager.playerCharacterController.transform.eulerAngles.z;
         
         serializedSaveGame.playerHPNew = gameManager.playerCharacterController.Hp;
@@ -45,8 +43,8 @@ public class SaveGameManager : MonoBehaviour
          // gameManager.playerCharacterController.transform.eulerAngles = serializedSaveGame.playerRotation;
          gameManager.playerCharacterController.transform.position = new Vector3(serializedSaveGame.playerPositionX,
              serializedSaveGame.playerPositionY, serializedSaveGame.playerPositionZ);
-         gameManager.playerCharacterController.transform.eulerAngles = new Vector3(serializedSaveGame.playerRotationX,
-             serializedSaveGame.playerRotationY, serializedSaveGame.playerRotationZ);
+         gameManager.playerCharacterController.transform.eulerAngles = new Vector3(0, 0,
+             serializedSaveGame.playerRotationZ);
          gameManager.playerCharacterController.Hp = serializedSaveGame.playerHPNew;
         
          gameManager.playerCharacterController.CurrentWaypointIndex = serializedSaveGame.currentWaypointIndex;
