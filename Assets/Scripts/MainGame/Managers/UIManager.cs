@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         skillsHolder = GameObject.Find("Skills Group");
-        GameObject[] skillsButtonUI = skillsHolder.GetComponentsInChildren<GameObject>();
+        SkillButtonUI[] skillsButtonUI = skillsHolder.GetComponentsInChildren<SkillButtonUI>();
         
         for (int i = 0; i < skillsButtonUI.Length; i++)
         {
