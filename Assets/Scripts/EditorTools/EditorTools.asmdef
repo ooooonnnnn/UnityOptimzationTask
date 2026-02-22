@@ -1,0 +1,16 @@
+{
+    "name": "EditorTools_ASM",
+    "rootNamespace": "",
+    "references": [
+        "GUID:34e73806b4f37f14e94768aee79e9db0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
