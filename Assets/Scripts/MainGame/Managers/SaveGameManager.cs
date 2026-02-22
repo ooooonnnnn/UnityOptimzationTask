@@ -19,14 +19,17 @@ public class SaveGameManager : MonoBehaviour
         serializedSaveGame = new SerializedSaveGame();
         // serializedSaveGame.playerPosition = gameManager.playerCharacterController.transform.position;
         // serializedSaveGame.playerRotation = gameManager.playerCharacterController.transform.eulerAngles;
-        serializedSaveGame.playerPositionX = gameManager.playerCharacterController.transform.position.x;
-        serializedSaveGame.playerPositionY = gameManager.playerCharacterController.transform.position.y;
-        serializedSaveGame.playerPositionZ = gameManager.playerCharacterController.transform.position.z;
+        var playerCharController = gameManager.playerCharacterController;
+        var playerTransform = playerCharController.transform;
         
-        serializedSaveGame.playerRotationZ = gameManager.playerCharacterController.transform.eulerAngles.z;
+        serializedSaveGame.playerPositionX = playerTransform.position.x;
+        serializedSaveGame.playerPositionY = playerTransform.position.y;
+        serializedSaveGame.playerPositionZ = playerTransform.position.z;
         
-        serializedSaveGame.playerHPNew = gameManager.playerCharacterController.Hp;
-        serializedSaveGame.currentWaypointIndex = gameManager.playerCharacterController.CurrentWaypointIndex;
+        serializedSaveGame.playerRotationZ = playerTransform.eulerAngles.z;
+        
+        serializedSaveGame.playerHPNew = playerCharController.Hp;
+        serializedSaveGame.currentWaypointIndex = playerCharController.CurrentWaypointIndex;
         
           //  SaveToJson();
          SaveToBinary();
