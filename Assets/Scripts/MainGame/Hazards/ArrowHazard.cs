@@ -38,17 +38,16 @@ public class ArrowHazard : MonoBehaviour
     void Update()
     {
         shootIntervalLeft -= Time.deltaTime;
-        if (shootIntervalLeft <= 0)
-        {
-            ArrowObject arrow = arrowPool.Get();
-            arrow.transform.position = transform.position;
-            arrow.transform.rotation = Quaternion.Euler(0, 180, 0);
-            //ArrowObject arrow = Instantiate(arrowPrefab,transform.position,Quaternion.identity).GetComponent<ArrowObject>();
-            //arrow.transform.Rotate(0,90,0);
-            //arrow.transform.Rotate(0,90,0);
-            shootIntervalLeft = shootInterval;
-            StartCoroutine(ReturnAfter(arrow, 3f));
-        }
+        if (!(shootIntervalLeft <= 0)) return;
+        
+        ArrowObject arrow = arrowPool.Get();
+        arrow.transform.position = transform.position;
+        arrow.transform.rotation = Quaternion.Euler(0, 180, 0);
+        //ArrowObject arrow = Instantiate(arrowPrefab,transform.position,Quaternion.identity).GetComponent<ArrowObject>();
+        //arrow.transform.Rotate(0,90,0);
+        //arrow.transform.Rotate(0,90,0);
+        shootIntervalLeft = shootInterval;
+        StartCoroutine(ReturnAfter(arrow, 3f));
     }
     
     private static IEnumerator ReturnAfter(ArrowObject arrow, float time)
