@@ -7,18 +7,19 @@ public class ArrowHazard : MonoBehaviour
     private const string ArrowPath = "ArrowObject";
     
     //public GameObject arrowPrefab;
-    private static ObjectPool<ArrowObject> arrowPool;
+    private static ObjectPool<GameObject> arrowPool;
     [SerializeField] private float arrowTimeAlive;
     [SerializeField] private float shootInterval;
+    [SerializeField] private GameObject arrowPrefab;
     private float shootIntervalLeft;
 
     private void Awake()
     {
         if (arrowPool == null)
         {
-            arrowPool = new ObjectPool<ArrowObject>(() =>
+            arrowPool = new ObjectPool<GameObject>(() =>
             {
-                ArrowObject arrow = Instantiate(Resources.Load<ArrowObject>(ArrowPath));
+                GameObject arrow = Instantiate(arrowPrefab,transform.position,Quaternion.identity);
                 return arrow;
             }, arrow =>
             {
@@ -40,7 +41,7 @@ public class ArrowHazard : MonoBehaviour
         shootIntervalLeft -= Time.deltaTime;
         if (!(shootIntervalLeft <= 0)) return;
         
-        ArrowObject arrow = arrowPool.Get();
+        GameObject arrow = arrowPool.Get();
         arrow.transform.position = transform.position;
         arrow.transform.rotation = Quaternion.Euler(0, 180, 0);
         //ArrowObject arrow = Instantiate(arrowPrefab,transform.position,Quaternion.identity).GetComponent<ArrowObject>();
@@ -50,7 +51,7 @@ public class ArrowHazard : MonoBehaviour
         StartCoroutine(ReturnAfter(arrow, 3f));
     }
     
-    private static IEnumerator ReturnAfter(ArrowObject arrow, float time)
+    private static IEnumerator ReturnAfter(GameObject arrow, float time)
     {
         yield return new WaitForSeconds(time);
         arrowPool.Release(arrow);
