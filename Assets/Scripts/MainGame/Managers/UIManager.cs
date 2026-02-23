@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,31 +11,23 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private PlayerCharacterController bobby;
     [SerializeField] private GameObject skillsHolder;
+    [SerializeField] private SkillButtonUI[] skillsButtonUI;
     
-    public void RefreshHPText(int newHP)
+    public void RefreshHpText(int newHp)
     {
-        hpText.text = newHP.ToString();
+        hpText.text = newHp.ToString();
     }
 
-    private void Awake()
+    private void OnValidate()
     {
-        bobby.onTakeDamageEventAction += RefreshHPText;
-    }
-
-    private void Start()
-    {
-        hpText.text = bobby.Hp.ToString();
-    }
-
-    private void Update()
-    {
+        bobby.onTakeDamageEventAction += RefreshHpText;
         skillsHolder = GameObject.Find("Skills Group");
-        SkillButtonUI[] skillsButtonUI = skillsHolder.GetComponentsInChildren<SkillButtonUI>();
-        
+        skillsButtonUI = skillsHolder.GetComponentsInChildren<SkillButtonUI>();
         for (int i = 0; i < skillsButtonUI.Length; i++)
         {
-            skillsButtonUI[i].GetComponent<SkillButtonUI>().skillIcon.sprite =  skillsButtonUI[i].GetComponent<SkillButtonUI>().skillIcons[i];
-            skillsButtonUI[i].GetComponent<SkillButtonUI>().skillNameText.text = "Skill " + (i + 1);
+            skillsButtonUI[i].skillIcon.sprite =  skillsButtonUI[i].skillIcons[i];
+            skillsButtonUI[i].skillNameText.text = "Skill " + (i + 1);
         }
+        hpText.text = bobby.Hp.ToString();
     }
 }

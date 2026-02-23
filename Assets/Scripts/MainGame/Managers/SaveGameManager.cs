@@ -52,7 +52,7 @@ public class SaveGameManager : MonoBehaviour
         
          gameManager.playerCharacterController.CurrentWaypointIndex = serializedSaveGame.currentWaypointIndex;
          //
-         uiManager.RefreshHPText(gameManager.playerCharacterController.Hp);
+         uiManager.RefreshHpText(gameManager.playerCharacterController.Hp);
          gameManager.playerCharacterController.SetDestination(gameManager.playerCharacterController.CurrentWaypointIndex);
     }
 
