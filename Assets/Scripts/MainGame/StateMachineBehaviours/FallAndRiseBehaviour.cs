@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Animations;
 
 public class FallAndRiseBehaviour : StateMachineBehaviour
 {
@@ -20,11 +19,5 @@ public class FallAndRiseBehaviour : StateMachineBehaviour
         base.OnStateMachineExit(animator, stateMachinePathHash);
         
         playerCharacterController.ToggleMoving(true);
-    }
-
-    public override void OnStateMachineEnter(Animator animator, int stateMachinePathHash, AnimatorControllerPlayable controller)
-    {
-        base.OnStateMachineEnter(animator, stateMachinePathHash, controller);
-      
     }
 }

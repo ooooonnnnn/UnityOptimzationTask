@@ -1,24 +1,24 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
-using UnityEngine.Serialization;
 
 public class ArrowHazard : MonoBehaviour
 {
+    private const string ArrowPath = "ArrowObject";
+    
     //public GameObject arrowPrefab;
     private static ObjectPool<ArrowObject> arrowPool;
     [SerializeField] private float arrowTimeAlive;
     [SerializeField] private float shootInterval;
     private float shootIntervalLeft;
 
-    void Awake()
+    private void Awake()
     {
         if (arrowPool == null)
         {
             arrowPool = new ObjectPool<ArrowObject>(() =>
             {
-                ArrowObject arrow = Instantiate(Resources.Load<ArrowObject>("ArrowObject"));
+                ArrowObject arrow = Instantiate(Resources.Load<ArrowObject>(ArrowPath));
                 return arrow;
             }, arrow =>
             {
@@ -35,7 +35,7 @@ public class ArrowHazard : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         shootIntervalLeft -= Time.deltaTime;
         if (!(shootIntervalLeft <= 0)) return;

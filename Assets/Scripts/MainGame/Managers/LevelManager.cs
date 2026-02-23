@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -25,7 +22,7 @@ public class LevelManager : MonoBehaviour
 
     private void AsyncOperationOnCompleted(AsyncOperationHandle<GameObject> obj)
     {
-       Debug.Log("Instntiate");
+       Debug.Log("Instantiate");
     }
 
     public void LoadSector()

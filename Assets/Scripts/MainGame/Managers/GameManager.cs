@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
@@ -15,16 +11,32 @@ public class GameManager : MonoBehaviour
     {
         foreach (FireHazard fireHazard in fireHazards)
         {
-            fireHazard.fireHazardData = 
+            if (fireHazard)
+                fireHazard.fireHazardData =
                 fireHazardScriptableObjects[Random.Range(0, fireHazardScriptableObjects.Length)];
-            fireHazard.onCharacterEnteredAction += HandleCharacterEnteredFire;
         }
-      
+    }
+
+    private void OnEnable()
+    {
+        foreach (FireHazard fireHazard in fireHazards)
+        {
+            if (fireHazard)
+                fireHazard.onCharacterEnteredAction += HandleCharacterEnteredFire;
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (FireHazard fireHazard in fireHazards)
+        {
+            if (fireHazard)
+                fireHazard.onCharacterEnteredAction -= HandleCharacterEnteredFire;
+        }
     }
 
     public void HandleCharacterEnteredFire(FireEnteredEventArgs args)
     {
         args.targetCharacterController.TakeDamage(args.damageDealt);
     }
-    
 }

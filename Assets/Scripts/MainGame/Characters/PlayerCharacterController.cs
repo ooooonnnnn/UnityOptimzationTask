@@ -1,15 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class PlayerCharacterController : MonoBehaviour
 {
+    private static readonly int SpeedHash = Animator.StringToHash(SpeedString);
+    private const string SpeedString = "Speed";
+    
+    [SerializeField] private Camera mainCamera; 
+    
     public event UnityAction<int> onTakeDamageEventAction;
     [SerializeField] private UnityEvent<int> onTakeDamageEvent;
 
@@ -105,11 +104,11 @@ public class PlayerCharacterController : MonoBehaviour
         }
 
         if (animator)
-            animator.SetFloat("Speed", navMeshAgent.velocity.magnitude);
+            animator.SetFloat(SpeedHash, navMeshAgent.velocity.magnitude);
         
-        if (Camera.main != null)
+        if (mainCamera)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, 100f))
             {
                 //We want to know what the mouse is hovering now
@@ -117,15 +116,5 @@ public class PlayerCharacterController : MonoBehaviour
             }
         }
 
-    }
-    
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
     }
 }
